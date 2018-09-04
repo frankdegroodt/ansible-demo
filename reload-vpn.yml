@@ -1,4 +1,4 @@
-- name: restart vpn services
+- hosts: all
   systemd:
     state: restarted
     name: "{{ item }}"
