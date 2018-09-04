@@ -3,10 +3,10 @@
   become_method: sudo
   become_user: root
   tasks:
- - name: Restart OpenVPN services
-   systemd:
-     state: restarted
-     name: "{{ item }}"
-   with_items:
-     - openvpn-bridge
-     - openvpn-client
+- name: Restart OpenVPN services
+  service:
+    state: restarted
+    name: "{{ item }}"
+  with_items:
+    - openvpn-bridge
+    - openvpn-client
