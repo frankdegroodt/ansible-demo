@@ -8,5 +8,5 @@
             state: restarted
             name: "{{ item }}"
             with_items:
-                - openvpn-bridge
-                - openvpn-client
+                - 'openvpn-bridge'
+                - 'openvpn-client'
