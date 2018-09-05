@@ -3,7 +3,4 @@
   become_method: sudo
   become_user: root
   tasks:
-      - name: delete file 
-          file:
-              state: absent
-              path: /tmp/testfile
+      - file: path=/tmp/testfile state=absent
