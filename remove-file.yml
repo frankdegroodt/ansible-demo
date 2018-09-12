@@ -1,6 +1,3 @@
 - hosts: all
-  become: yes
-  become_method: sudo
-  become_user: root
   tasks:
       - file: path=/tmp/testfile state=absent
