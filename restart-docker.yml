@@ -1,0 +1,11 @@
+- hosts: all
+  become: yes
+  become_method: sudo
+  become_user: root
+  tasks:
+      - name: Restart Homebridge container
+        docker_container:
+            name: homebridge_homebridge_1
+            image: oznu/homebridge:raspberry-pi
+            state: started
+            restart: yes
