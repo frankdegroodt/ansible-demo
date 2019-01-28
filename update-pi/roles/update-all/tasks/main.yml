@@ -1,0 +1,6 @@
+--- 
+#Update all RPMS
+-
+  yum:
+    name: "*"
+    state: latest
