@@ -1,4 +1,4 @@
-- name: restart the Transmission service
+- name: Restart the Transmission service
   hosts: all
   become: yes
   tasks:
@@ -9,4 +9,3 @@
       daemon_reload: yes
     with_items:
       - 'transmission-daemon'
-

@@ -1,4 +1,4 @@
-- name: restart the vpn services
+- name: Restart the OpenVPN services
   hosts: all
   become: yes
   tasks:
@@ -10,4 +10,3 @@
     with_items:
       - 'openvpn-bridge'
       - 'openvpn-client'
-

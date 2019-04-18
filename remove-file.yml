@@ -1,4 +1,4 @@
-- name: delete testfile
+- name: Delete testfile
   hosts: all
   become: True
   tasks:
