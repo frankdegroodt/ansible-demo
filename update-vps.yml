@@ -1,5 +1,7 @@
-- hosts: all
+---
+- name: update all packages on host
+  hosts: all
   become: yes
   tasks:
-      - name: update all
+      - name: update all packages
         yum: name='*' state=latest

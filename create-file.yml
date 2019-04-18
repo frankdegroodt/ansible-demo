@@ -1,4 +1,5 @@
-- hosts: all
+- name: create a file
+  hosts: all
   become: True
   tasks:
       - name: ensure file exists
