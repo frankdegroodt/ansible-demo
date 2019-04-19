@@ -1,5 +1,4 @@
-- name: Delete testfile
-  hosts: all
+- hosts: all
   become: True
   tasks:
       - file: path=/tmp/testfile state=absent

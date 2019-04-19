@@ -1,5 +1,4 @@
-- name: Restart the Transmission service
-  hosts: all
+- hosts: all
   become: yes
   tasks:
   - name: Restart Transmission service

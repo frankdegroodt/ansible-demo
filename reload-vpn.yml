@@ -1,5 +1,4 @@
-- name: Restart the OpenVPN services
-  hosts: all
+- hosts: all
   become: yes
   tasks:
   - name: Restart OpenVPN services

@@ -1,5 +1,4 @@
-- name: Restart the Homebridge container
-  hosts: all
+- hosts: all
   become: yes
   tasks:
       - name: Restart Homebridge container
