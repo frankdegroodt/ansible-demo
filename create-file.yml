@@ -2,7 +2,7 @@
 - hosts: all
   become: True
   tasks:
-      - name: ensure file exists
+      - name: Ensure file exists
         copy:
             content: ""
             dest: /tmp/testfile
