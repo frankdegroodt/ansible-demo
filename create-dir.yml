@@ -10,10 +10,26 @@
             group: sys
             mode: '0755'
             
-      - name: Copy file to directory
+      - name: Copy file1 to directory
         copy:
-            src: /tower-demo/testfile.conf
-            dest: /tmp/testdir/testfile.conf
+            src: /tower-demo/testfile-1.conf
+            dest: /tmp/testdir/testfile-1.conf
+            owner: root
+            group: 'sys'
+            mode: '0644'
+            
+      - name: Copy file2 to directory
+        copy:
+            src: /tower-demo/testfile-2.conf
+            dest: /tmp/testdir/testfile-2.conf
+            owner: root
+            group: 'sys'
+            mode: '0644'
+            
+      - name: Copy file3 to directory
+        copy:
+            src: /tower-demo/testfile-3.conf
+            dest: /tmp/testdir/testfile-3.conf
             owner: root
             group: 'sys'
             mode: '0644'
