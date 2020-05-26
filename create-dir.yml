@@ -22,5 +22,5 @@
             src: /tower-demo/testfile.conf
             dest: /tmp/testdir/testfile.conf
             owner: frank
-            group: 1000
+            group: '1000'
             mode: '0644'
