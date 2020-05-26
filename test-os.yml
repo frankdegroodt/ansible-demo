@@ -2,7 +2,7 @@
 - hosts: all
   become: True
   vars:
-  foo: foo
+    foo: foo
   
   tasks:
       - shell: echo "I've got '{{ foo }}' and am not afraid to use it!"
