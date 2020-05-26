@@ -1,6 +1,6 @@
 ---
 - hosts: all
-  become: False
+  become: True
   tasks:
       - name: Ensure directory exists
         file:
@@ -15,4 +15,12 @@
             path: /tmp/testdir
             state: directory
             owner: frank
-            group: frank
+            group: 1000
+            
+      - name: Copy file to directory
+        copy:
+            src: /tower-demo/testfile.conf
+            dst: /tmp/testdir/testfile.conf
+            owner: frank
+            group: 1000
+            mode: '0644'
