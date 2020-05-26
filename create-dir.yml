@@ -10,17 +10,10 @@
             group: sys
             mode: '0755'
             
-      - name: Change ownership
-        file:
-            path: /tmp/testdir
-            state: directory
-            owner: frank
-            group: '1000'
-            
       - name: Copy file to directory
         copy:
             src: /tower-demo/testfile.conf
             dest: /tmp/testdir/testfile.conf
-            owner: frank
-            group: '1000'
+            owner: root
+            group: 'sys'
             mode: '0644'
