@@ -9,6 +9,8 @@
             owner: root
             group: sys
             mode: '0755'
+        tags:
+        - directory
             
       - name: Copy file1 to directory
         copy:
@@ -17,6 +19,8 @@
             owner: root
             group: 'sys'
             mode: '0644'
+        tags:
+        - file1
             
       - name: Copy file2 to directory
         copy:
@@ -25,6 +29,8 @@
             owner: root
             group: 'sys'
             mode: '0644'
+        tags:
+        - file2
             
       - name: Copy file3 to directory
         copy:
@@ -33,3 +39,5 @@
             owner: root
             group: 'sys'
             mode: '0644'
+        tags:
+        - file3
