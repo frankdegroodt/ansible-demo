@@ -1,5 +1,6 @@
 ---
 - hosts: all
   become: True
+  gather_facts: no
   tasks:
       - file: path=/tmp/testfile state=absent
