@@ -17,4 +17,7 @@
       file:
         path: "/tmp/tower-demo/file{{ item }}"
         state: touch
+        owner: root
+        group: 'sys'
+        mode: '0644'
       with_sequence: start=1 end={{ count }}
