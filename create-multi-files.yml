@@ -1,0 +1,10 @@
+--- 
+- hosts: localhost
+  gather_facts: no
+  become: no
+  tasks:
+    - name: generate empty files
+      file:
+        path: "/tmp/tower-demo/file{{ item }}"
+        state: touch
+      with_sequence: start=1 end={{ count }}
