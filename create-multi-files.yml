@@ -2,15 +2,13 @@
 - hosts: all
   become: True
   tasks:
-      - name: Ensure directory exists
-        file:
-            path: /tmp/tower-demo
-            state: directory
-            owner: root
-            group: sys
-            mode: '0755'
-        tags:
-        - directory
+    - name: Ensure directory exists
+      file:
+        path: /tmp/tower-demo
+        state: directory
+        owner: root
+        group: sys
+        mode: '0755'
         
     - name: generate empty files
       file:
