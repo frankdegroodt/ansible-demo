@@ -1,14 +1,14 @@
 --- 
 - hosts: localhost
   gather_facts: no
-  become: no
+  become: yes
   tasks:
     - name: Ensure directory exists
       file:
         path: /tmp/tower-demo
         state: directory
-        owner: frank
-        group: frank
+        owner: root
+        group: sys
         mode: '0755'
       tags:
        - directory
