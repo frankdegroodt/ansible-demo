@@ -1,3 +1,3 @@
 # ansible
 
-Some simple playbooks for simple demo purposes.
+Some very simple playbooks for simple demo purposes.
