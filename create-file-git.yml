@@ -1,7 +1,5 @@
 ---
 - hosts: all
-  vars:
-       filecount: 3
   become: True
   tasks:
     - name: Ensure directory exists
