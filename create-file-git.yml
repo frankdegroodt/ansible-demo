@@ -3,7 +3,6 @@
   vars:
        filecount: 3
   become: True
-  
   tasks:
     - name: Ensure directory exists
       file:
@@ -12,8 +11,7 @@
         owner: root
         group: sys
         mode: '0755'
-        
-  tasks:
+    
     - name: Create x amount of files
       file:
         path: "/tmp/tower-demo/git-{{ item }}"
