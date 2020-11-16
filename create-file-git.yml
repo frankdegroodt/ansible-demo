@@ -4,7 +4,7 @@
   tasks:
     - name: Display all variables/facts known for a host
       debug:
-        var: groupvars[filecount]
+        var: filecount
     - name: Ensure directory exists
       file:
         path: /tmp/tower-demo
