@@ -1,0 +1,12 @@
+---
+- hosts: all
+  become: True
+  tasks:
+      - name: Create x amount of files
+        file:
+        path: "/tmp/tower-demo/git-{{ item }}"
+        state: touch
+        owner: root
+        group: 'sys'
+        mode: '0644'
+      with_sequence: start=1 end={{ filecount }}
