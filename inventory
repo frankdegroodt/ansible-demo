@@ -1,2 +1,2 @@
 [rhel]
-tower
+tower filecount=4
