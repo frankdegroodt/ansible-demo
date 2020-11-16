@@ -1,7 +1,7 @@
 ---
 - hosts: all
   vars:
-       filescount: 3
+       filecount: 3
   become: True
   tasks:
     - name: Create x amount of files
