@@ -1,6 +1,5 @@
 [rhel]
 tower
-test
 
 [rhel:vars]
 filecount=5
