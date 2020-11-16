@@ -1,2 +1,5 @@
 [rhel]
-tower filecount=5
+tower
+
+[rhel:vars]
+filecount=5
