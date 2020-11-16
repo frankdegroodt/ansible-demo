@@ -1,6 +1,6 @@
 ---
 - hosts: all
-   vars:
+  vars:
        files: "{{ filecount }}"
   become: True
   tasks:
