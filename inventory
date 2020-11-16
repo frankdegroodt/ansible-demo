@@ -2,4 +2,4 @@
 tower 
 
 [rhel:vars]
-filecount=7
+filecount=10
