@@ -25,21 +25,19 @@
         mode: '0644'
       with_sequence: start=1 end={{ filecount }}
       register: files_created
-        
-    - name: Add new files to array
+     
+    - name: populate new_files
       set_fact:
-        new_files: "{{ new_files|default([]) + item.stdout_lines }}"
-      loop: "{{ files_created.results }}"
+        new_files: "{{ files_created.results | map(attribute='dest') | list }}"
         
-    - debug: var=new_files
-
     - name: Get other files
       find:
         path: /tmp/tower-demo
-        excludes:
-          - "{{ new_files }}"
       register: files_to_delete
-      
-    - name: What did we do
-      debug:
-        var: files_to_delete
+     
+    - name: Deleting everything else
+      file:
+        path: "{{ item.path }}"
+        state: absent
+      with_items: "{{ files_to_delete.files }}"
+      when: item.path not in new_files
