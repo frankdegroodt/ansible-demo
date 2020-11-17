@@ -27,7 +27,7 @@
       
     - name: Print output
       debug:
-        var: files_created
+        var: files_created.results.dest
         
     - name: Add new files to array
       set_fact:
