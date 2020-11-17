@@ -23,8 +23,8 @@
       with_sequence: start=1 end={{ filecount }}
       register: files_created
       
-    -name: Delete all other files
-     file:
-       path: "/tmp/tower-demo/"
-       state: absent
-     with_items: "{{ files_created['files'] }}"
+    - name: Delete all other files
+      file:
+        path: "/tmp/tower-demo/"
+        state: absent
+      with_items: "{{ files_created['files'] }}"
