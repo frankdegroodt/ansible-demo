@@ -32,7 +32,7 @@
     - name: Add new files to array
       set_fact:
         new_files: "{{ new_files }} + [ '{{ files_created.dest }}' ]"
-      with_dict: "{{ files_created.dest }}"
+      with_dict: "{{ files_created.results.dest }}"
 
     - name: Get other files
       find:
