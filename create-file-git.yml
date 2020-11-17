@@ -31,7 +31,7 @@
         
     - name: Add new files to array
       set_fact:
-        new_files: "{{ new_files.results | map(attributes='dest') | list }}"
+        new_files: "{{ result.items | map(attributes='dest') | list }}"
         
     - debug: var=new_files
 
