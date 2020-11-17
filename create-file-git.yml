@@ -25,15 +25,11 @@
         mode: '0644'
       with_sequence: start=1 end={{ filecount }}
       register: files_created
-      
-    - name: Print output
-      debug:
-        var: files_created
         
     - name: Add new files to array
-      debug:
-        var: new_files
-      loop: "{{ results | community.general.json_query('dest') }}"
+      set_fact:
+        new_files: "{{ new_files|default([]) + item.stdout_lines }}"
+      loop: "{{ files_created.results }}"
         
     - debug: var=new_files
 
