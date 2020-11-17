@@ -3,6 +3,7 @@
   become: True
   vars:
     new_files: []
+    
   tasks:
     - name: Display all variables/facts known for a host
       debug:
