@@ -1,6 +1,8 @@
 ---
 - hosts: all
   become: True
+  vars:
+    new_files: []
   tasks:
     - name: Display all variables/facts known for a host
       debug:
@@ -21,12 +23,18 @@
         group: 'sys'
         mode: '0644'
       with_sequence: start=1 end={{ filecount }}
+      register: files_created
+      
+    - name: Add old files to variable
+      set_fact:
+        new_files: "{{ new_files }} + [ '{{ item.dest }}' ]"
+      with_items: "{{ files_created.dest }}"
 
     - name: Get other files
       find:
         path: /tmp/tower-demo
         excludes:
-          - "git-{{ item }}"
+          - "{{ new_files }}"
       register: files_to_delete
       
     - name: What did we do
