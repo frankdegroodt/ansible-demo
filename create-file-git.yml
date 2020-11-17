@@ -23,6 +23,6 @@
       with_sequence: start=1 end={{ filecount }}
       register: myfiles
       
-    - name: Delete all other files
+    - name: What did we do?
       debug:
-        var: myfiles['dest']
+        var: myfiles
