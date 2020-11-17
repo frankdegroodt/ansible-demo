@@ -31,7 +31,7 @@
         
     - name: Add old files to variable
       set_fact:
-        new_files: "{{ new_files }} + [ '{{ item.dest }}' ]"
+        new_files: "{{ new_files }} + [ '{{ files_created.dest }}' ]"
       with_items: "{{ files_created.dest }}"
 
     - name: Get other files
