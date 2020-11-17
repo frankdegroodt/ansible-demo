@@ -26,7 +26,7 @@
       with_sequence: start=1 end={{ filecount }}
       register: files_created
      
-    - name: populate new_files
+    - name: Populate new_files
       set_fact:
         new_files: "{{ files_created.results | map(attribute='dest') | list }}"
         
