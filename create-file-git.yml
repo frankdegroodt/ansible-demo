@@ -34,7 +34,6 @@
       debug:
         var: new_files
       loop: "{{ results | community.general.json_query('dest') }}"
-      wantlist=True
         
     - debug: var=new_files
 
