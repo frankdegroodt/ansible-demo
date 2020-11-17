@@ -29,10 +29,10 @@
       debug:
         var: files_created
         
-    - name: Add old files to variable
+    - name: Add new files to array
       set_fact:
         new_files: "{{ new_files }} + [ '{{ files_created.dest }}' ]"
-      with_items: "{{ files_created.item.dest }}"
+      with_dict: "{{ files_created.item.dest }}"
 
     - name: Get other files
       find:
