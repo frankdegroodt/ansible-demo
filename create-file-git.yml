@@ -25,6 +25,10 @@
       with_sequence: start=1 end={{ filecount }}
       register: files_created
       
+    - name: Print output
+      debug:
+        var: files_created
+        
     - name: Add old files to variable
       set_fact:
         new_files: "{{ new_files }} + [ '{{ item.dest }}' ]"
