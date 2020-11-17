@@ -32,7 +32,7 @@
         
     - name: Add new files to array
       set_fact:
-        new_files: "{{ default({}) | combine( {item.dest.name: item.stdout} ) }}"
+        new_files: "{{ new_files | combine( {item.dest.name: item.stdout} ) }}"
       with_items: "{{ files_created.results }}"
         
     - debug: var=new_files
