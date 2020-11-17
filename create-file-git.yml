@@ -25,4 +25,4 @@
       
     - name: Delete all other files
       debug:
-        var: myfiles
+        var: myfiles['dest']
