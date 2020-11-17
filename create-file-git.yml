@@ -33,7 +33,8 @@
     - name: Add new files to array
       debug:
         var: new_files
-      loop: "{{ files_created | community.general.json_query('results.dest') }}"
+      loop: "{{ results | community.general.json_query('dest') }}"
+      wantlist=True
         
     - debug: var=new_files
 
