@@ -31,9 +31,9 @@
         var: files_created
         
     - name: Add new files to array
-      set_fact:
-        new_files: "{{ new_files|default({}) | combine( {item.dest: item.stdout} ) }}"
-      with_items: "{{ files_created.results }}"
+      debug
+        var: new_files
+      loop: "{{ files_created | community.general.json_query('results.dest') }}"
         
     - debug: var=new_files
 
