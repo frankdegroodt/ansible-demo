@@ -21,8 +21,14 @@
         group: 'sys'
         mode: '0644'
       with_sequence: start=1 end={{ filecount }}
-      register: myfiles
+      
+    - name: Get other files
+      find:
+        path: /tmp/tower-demo
+        excludes:
+          - "git-{{ item }}"
+      register: files_to_delete
       
     - name: What did we do?
       debug:
-        var: myfiles
+        var: files_to_delete
