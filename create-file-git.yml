@@ -27,11 +27,11 @@
       
     - name: Print output
       debug:
-        var: files_created.results.dest
+        var: files_created
         
     - name: Add new files to array
       set_fact:
-        new_files: "{{ new_files }} + [ '{{ files_created.dest }}' ]"
+        new_files: "{{ new_files }} + [ '{{ files_created.results.dest }}' ]"
       with_dict: "{{ files_created.results.dest }}"
 
     - name: Get other files
