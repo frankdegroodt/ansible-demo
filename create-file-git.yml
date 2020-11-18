@@ -8,6 +8,19 @@
     - name: Display all variables/facts known for a host
       debug:
         var: filecount
+
+    - name: Generating a random number
+      set_fact:
+        random_number: "{{ 100 | random }}"
+      run_once: yes
+       
+    - debug: var=random_number
+      
+    - name: Add filecount to random number
+      set_fact:
+        end_number: "{{ (filecount | int) + (random_number | int) - 1 }}"
+      run_once: yes
+
     - name: Ensure directory exists
       file:
         path: /tmp/tower-demo
@@ -23,7 +36,7 @@
         owner: root
         group: 'sys'
         mode: '0644'
-      with_sequence: start=1 end={{ filecount }}
+      with_sequence: start={{ random_number }} end={{ end_number }}
       register: files_created
      
     - name: Populate new_files
