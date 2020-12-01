@@ -5,7 +5,7 @@
     new_files: []
     
   tasks:
-    - name: Display all variables/facts known for a host
+    - name: Display variables/facts known for a host
       debug:
         var: filecount
 
