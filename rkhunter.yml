@@ -1,7 +1,7 @@
 ---
-- hosts: all
-  become: True
+- hosts: vps1
+  become: no
   gather_facts: no
   
   tasks:
-      - shell: rkhunter --propupd
+      - shell: sudo /usr/bin/rkhunter --propupd
