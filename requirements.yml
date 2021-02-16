@@ -1,2 +1,4 @@
-# from galaxy
-- name: amazon.aws
+collections:
+ # from galaxy
+ - name: amazon.aws
+   source: https://galaxy.ansible.com
