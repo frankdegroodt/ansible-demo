@@ -1,5 +1,5 @@
-- name: Create an EC2 instance
-  hosts: localhost
+---
+- hosts: localhost
   gather_facts: False
   vars:
     keypair: key-frank-west
