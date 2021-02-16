@@ -1,0 +1,20 @@
+---
+- hosts: aws-webservers
+  become: True
+  tasks:
+      - name: Install the latest version of Apache
+        yum:
+          name: httpd
+          state: latest
+          
+      - name: Add index.html file
+        template:
+          dest: /var/www/html/index.html
+          src: var/www/html/index.html.j2
+        notify: Restart apache
+
+  handlers:
+       - name: Restart apache
+         service:
+           name: httpd
+           state: restarted
