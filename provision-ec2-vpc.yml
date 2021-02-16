@@ -6,6 +6,7 @@
     instance_type: t2.micro
     image: ami-5b2e5722
     region: eu-west-1
+    count: []
   tasks:
     - name: Launch instance
       amazon.aws.ec2:
@@ -16,6 +17,7 @@
          assign_public_ip: yes
          vpc_subnet_id: subnet-0deda245
          region: "{{ region }}"
+         count: "{{ count }}"
          instance_tags:
             Name: Demo
       register: ec2
