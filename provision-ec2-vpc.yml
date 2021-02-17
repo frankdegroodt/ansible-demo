@@ -21,3 +21,6 @@
          instance_tags:
             Name: Demo
       register: ec2
+
+    - name: Get the facts
+      ec2_instance_facts:
