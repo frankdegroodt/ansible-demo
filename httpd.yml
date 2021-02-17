@@ -2,9 +2,6 @@
 - hosts: aws-webservers
   become: True
   tasks:
-      - name: Get the facts
-        ec2_instance_facts:
-        
       - name: Install the latest version of Apache
         yum:
           name: httpd
