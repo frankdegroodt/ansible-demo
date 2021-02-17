@@ -24,3 +24,5 @@
 
     - name: Get the facts
       ec2_instance_info:
+        region: "{{ region }}"
+      
