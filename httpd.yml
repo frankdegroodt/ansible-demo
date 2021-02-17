@@ -3,7 +3,7 @@
   become: True
   tasks:
       - name: Get the facts
-        ec2_instance_info:
+        ec2_instance_facts:
         
       - name: Install the latest version of Apache
         yum:
