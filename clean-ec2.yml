@@ -1,0 +1,22 @@
+---
+- hosts: localhost
+  gather_facts: False
+  vars:
+    region: eu-west-1
+  tasks:
+    - name: Terminate Instances
+      ec2_instance_facts:
+        region: "{{ region }}"
+      register: ec2_info
+ 
+    - name: displaying output
+      debug: msg="{{item.instance_id}}"
+      with_items: "{{ec2_info.instances}}"
+ 
+    - name: terminate
+      ec2:
+        instance_ids: "{{item.instance_id}}"
+        region: "{{ region }}"
+        state: absent
+        wait: yes
+      with_items: "{{ec2_info.instances}}"
