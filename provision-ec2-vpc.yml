@@ -8,6 +8,18 @@
     region: eu-west-1
     count: []
   tasks:
+    - name: example using security group rule descriptions
+      ec2_group:
+         name: webserver
+         description: Webservers SC
+         vpc_id: vpc-46e8ea20
+         region: "{{ region }}"
+         rules:
+           - proto: tcp
+             ports:
+              - 22
+              - 80
+             cidr_ip: 0.0.0.0/0
     - name: Launch webserver instance
       ec2:
          key_name: "{{ keypair }}"
