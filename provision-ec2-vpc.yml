@@ -11,6 +11,7 @@
     - name: Launch webserver instance
       ec2:
          key_name: "{{ keypair }}"
+         group: webserver
          instance_type: "{{ instance_type }}"
          image: "{{ image }}"
          wait: true
