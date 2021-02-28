@@ -13,7 +13,6 @@
          name: webserver
          description: Webservers SC
          vpc_id: vpc-46e8ea20
-         profile: "{{ aws_profile }}"
          region: "{{ region }}"
          rules:
            - proto: tcp
