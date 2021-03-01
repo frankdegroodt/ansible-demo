@@ -16,7 +16,7 @@
          region: "{{ region }}"
          rules:
            - proto: tcp
-             ports: 
+             ports:
               - 22
               - 80
              cidr_ip: 0.0.0.0/0
