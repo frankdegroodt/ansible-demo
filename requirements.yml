@@ -3,5 +3,5 @@
    source: https://galaxy.ansible.com
 
 collections:
-  - name: amazon.aws
+  - name: community.aws
   
