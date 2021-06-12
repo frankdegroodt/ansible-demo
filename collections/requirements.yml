@@ -1,5 +1,8 @@
 ---
 collections:
 
- - name: ec2
+ - name: community.aws.ec2
+   source: https://galaxy.ansible.com
+   
+ - name: community.aws.ec2_instance
    source: https://galaxy.ansible.com
