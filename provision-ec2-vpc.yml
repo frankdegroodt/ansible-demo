@@ -1,6 +1,5 @@
 ---
 - hosts: localhost
-  gather_facts: False
   vars:
     keypair: key-frank-west
     instance_type: t2.micro
