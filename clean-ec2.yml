@@ -5,7 +5,7 @@
     region: eu-west-1
   tasks:
     - name: Terminate Instances
-      ec2_instance_facts:
+      ec2_instance_info:
         region: "{{ region }}"
       register: ec2_info
  
