@@ -8,10 +8,10 @@
     count: []
     type: []
   tasks:
-    - name: example using security group rule descriptions
+    - name: Add security group rule descriptions
       ec2_group:
          name: "{{ type }}"
-         description: Webservers SC
+         description: Webfarm SC
          vpc_id: vpc-46e8ea20
          region: "{{ region }}"
          rules:
@@ -20,7 +20,7 @@
               - 22
               - 80
              cidr_ip: 0.0.0.0/0
-    - name: Launch webserver instance
+    - name: Launch instance
       ec2:
          key_name: "{{ keypair }}"
          group: "{{ type }}"
@@ -32,5 +32,5 @@
          region: "{{ region }}"
          count: "{{ count }}"
          instance_tags:
-            Name: Webserver
+            Name: "{{ type }}"
       register: ec2
