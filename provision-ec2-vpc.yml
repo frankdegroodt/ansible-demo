@@ -6,10 +6,11 @@
     image: ami-5b2e5722
     region: eu-west-1
     count: []
+    type: []
   tasks:
     - name: example using security group rule descriptions
       ec2_group:
-         name: webserver
+         name: "{{ type }}"
          description: Webservers SC
          vpc_id: vpc-46e8ea20
          region: "{{ region }}"
@@ -22,7 +23,7 @@
     - name: Launch webserver instance
       ec2:
          key_name: "{{ keypair }}"
-         group: webserver
+         group: "{{ type }}"
          instance_type: "{{ instance_type }}"
          image: "{{ image }}"
          wait: true
