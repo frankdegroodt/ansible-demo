@@ -1,0 +1,42 @@
+---
+- hosts: localhost
+  vars:
+    keypair: key-frank-west
+    instance_type: t2.micro
+    image: ami-5b2e5722
+    region: eu-west-1
+    count: []
+    type: []
+    HOST_COUNT: "{{ groups['webfarm'] | length }}"
+  tasks:
+    - name: Add security group rule descriptions
+      ec2_group:
+         name: "{{ type }}"
+         description: Webfarm SC
+         vpc_id: vpc-46e8ea20
+         region: "{{ region }}"
+         rules:
+           - proto: tcp
+             ports:
+              - 22
+              - 80
+             cidr_ip: 0.0.0.0/0
+    - name: Launch instance
+      ec2:
+         key_name: "{{ keypair }}"
+         group: "{{ type }}"
+         instance_type: "{{ instance_type }}"
+         image: "{{ image }}"
+         wait: true
+         assign_public_ip: yes
+         vpc_subnet_id: subnet-0deda245
+         region: "{{ region }}"
+         count: "{{ count }}"
+         instance_tags:
+            Name: "{{ type }}"
+      register: ec2
+    - name: Add host to group 
+      add_host:
+         name: '{{ item }}'
+         groups: webfarm
+      loop: "{{ ansible_play_hosts }}"
