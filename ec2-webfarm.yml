@@ -39,7 +39,7 @@
             Name: "{{ type }}"
       register: ec2
     - name: Add host to group Webfarm
-      controller_group:
+      controller_groups:
         name: Webfarm
         inventory: AWS Inventory 
         state: present
@@ -47,7 +47,7 @@
         hosts:
           - myhost
     - name: Add host to specific group
-      controller_group:
+      controller_groups:
         name: "{{ type }}"
         inventory: AWS Inventory
         state: present
