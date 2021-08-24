@@ -1,5 +1,8 @@
 ---
 - hosts: localhost
+  collections:
+   - awx.awx
+   - redhat_cop.tower_configuration
   vars:
     keypair: key-frank-west
     instance_type: t2.micro
@@ -35,8 +38,19 @@
          instance_tags:
             Name: "{{ type }}"
       register: ec2
-    - name: Add host to group 
-      add_host:
-         name: '{{ item }}'
-         groups: webfarm
-      loop: "{{ ansible_play_hosts }}"
+    - name: Add host to group Webfarm
+      controller_group:
+        name: Webfarm
+        inventory: AWS Inventory 
+        state: present
+        tower_config_file: "/etc/controller/controller_cli.cfg"
+        hosts:
+          - myhost
+    - name: Add host to specific group
+      controller_group:
+        name: "{{ type }}"
+        inventory: AWS Inventory
+        state: present
+        controller_config_file: "/etc/controller/controller_cli.cfg"
+        hosts:
+          - myhost
