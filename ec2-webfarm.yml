@@ -45,7 +45,7 @@
         state: present
         tower_config_file: "/etc/controller/controller_cli.cfg"
         hosts:
-          - myhost
+          - "{{ instance_id }}"
     - name: Add host to specific group
       controller_groups:
         name: "{{ type }}"
@@ -53,4 +53,4 @@
         state: present
         controller_config_file: "/etc/controller/controller_cli.cfg"
         hosts:
-          - myhost
+          - "{{ instance_id }}"
