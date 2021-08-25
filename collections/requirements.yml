@@ -10,5 +10,5 @@ collections:
  - name: awx.awx
    source: "https://galaxy.ansible.com"
 
- - name: redhat_cop.controller_configuration
+ - name: ansible.controller
    source: "https://galaxy.ansible.com"
