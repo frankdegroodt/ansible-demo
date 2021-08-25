@@ -15,7 +15,7 @@
    - name: Add security group rule descriptions
      ec2_group:
       name: "{{ type }}"
-      description: Webfarm SC
+      description: Webservers SC
       vpc_id: vpc-46e8ea20
       region: "{{ region }}"
       rules:
