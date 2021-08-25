@@ -3,7 +3,7 @@
   hosts: localhost
   collections:
    - awx.awx
-   - redhat_cop.controller_configuration
+   - ansible.controller
   vars:
    keypair: key-frank-west
    instance_type: t2.micro
@@ -39,3 +39,28 @@
       instance_tags:
        Name: "{{ type }}"
      register: ec2
+     
+   - name: Add instance to webfarm group
+     group:
+      name: Webfarm
+      inventory: AWS Inventory
+      state: present
+      controller_config_file: "/etc/controller/controller_cli.cfg"
+      hosts:
+       - "{{ instance_id }}"
+      children:
+       - Webserver
+       - Database
+      preserve_existing_hosts: True
+      preserve_existing_children: True
+     loop: "{{ ec2.instances }}"
+
+   - name: Add instance to specific group
+     group:
+      name: "{{ type }}"
+      inventory: AWS Inventory
+      controller_config_file: "/etc/controller/controller_cli.cfg"
+      hosts:
+       - "{{ instance_id }}"
+      preserve_existing_hosts: True
+     loop: "{{ ec2.instances }}"
