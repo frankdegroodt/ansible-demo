@@ -1,0 +1,34 @@
+---
+- name: Group instances
+  hosts: localhost
+  connection: local
+  vars:
+    controller_validate_certs: false
+  collections:
+    - awx.awx
+    - ansible.controller
+  tasks:
+   - name: Add instance to webfarm group
+     group:
+      name: Webfarm
+      inventory: AWS Inventory
+      state: present
+      controller_config_file: "/etc/controller/controller_cli.cfg"
+      hosts:
+       - "{{ instance_id }}"
+      children:
+       - Webserver
+       - Database
+      preserve_existing_hosts: True
+      preserve_existing_children: True
+     loop: "{{ ec2.instances }}"
+
+   - name: Add instance to specific group
+     group:
+      name: "{{ type }}"
+      inventory: AWS Inventory
+      controller_config_file: "/etc/controller/controller_cli.cfg"
+      hosts:
+       - "{{ instance_id }}"
+      preserve_existing_hosts: True
+     loop: "{{ ec2.instances }}"
