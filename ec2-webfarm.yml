@@ -58,4 +58,4 @@
              controller_config_file: "/etc/controller/controller_cli.cfg"
              hosts:
                - "{{ instance_id }}"
-     when: instance_id is defined
+      when: instance_id is defined
