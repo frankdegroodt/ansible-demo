@@ -24,6 +24,7 @@
               - 22
               - 80
              cidr_ip: 0.0.0.0/0
+
     - name: Launch instance
       ec2:
          key_name: "{{ keypair }}"
@@ -39,23 +40,24 @@
             Name: "{{ type }}"
       register: ec2
 
-   - name: Add host to group Webfarm
-     local_action:
-     controller_groups:
-        name: Webfarm
-        inventory: AWS Inventory 
-        state: present
-        controller_config_file: "/etc/controller/controller_cli.cfg"
-        hosts:
-          - "{{ instance_id }}"
-     loop: "{{ ec2.instances }}"
-   - name: Add host to specific group
-     local_action:
-     controller_groups:
-        name: "{{ type }}"
-        inventory: AWS Inventory
-        state: present
-        controller_config_file: "/etc/controller/controller_cli.cfg"
-        hosts:
-          - "{{ instance_id }}"
-     loop: "{{ ec2.instances }}"
+    - name: Add host to group Webfarm
+      local_action:
+      controller_groups:
+         name: Webfarm
+         inventory: AWS Inventory 
+         state: present
+         controller_config_file: "/etc/controller/controller_cli.cfg"
+         hosts:
+           - "{{ instance_id }}"
+      loop: "{{ ec2.instances }}"
+
+    - name: Add host to specific group
+      local_action:
+      controller_groups:
+         name: "{{ type }}"
+         inventory: AWS Inventory
+         state: present
+         controller_config_file: "/etc/controller/controller_cli.cfg"
+         hosts:
+           - "{{ instance_id }}"
+      loop: "{{ ec2.instances }}"
