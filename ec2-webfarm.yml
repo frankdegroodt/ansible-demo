@@ -2,7 +2,7 @@
 - hosts: localhost
   collections:
    - awx.awx
-   - redhat_cop.tower_configuration
+   - redhat_cop.controller_configuration
   vars:
     keypair: key-frank-west
     instance_type: t2.micro
