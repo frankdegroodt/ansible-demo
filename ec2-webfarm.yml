@@ -47,7 +47,7 @@
       state: present
       controller_config_file: "/etc/controller/controller_cli.cfg"
       hosts:
-       - "{{ item }}"
+       - "{{ item.public_dns_name }}"
       children:
        - Webserver
        - Database
@@ -61,6 +61,6 @@
       inventory: AWS Inventory
       controller_config_file: "/etc/controller/controller_cli.cfg"
       hosts:
-       - "{{ item }}"
+       - "{{ item.public_dns_name }}"
       preserve_existing_hosts: True
      loop: "{{ ec2.instances }}"
