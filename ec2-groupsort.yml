@@ -35,6 +35,6 @@
       inventory: "AWS Inventory"
       controller_host: "{{ controller_hostname }}"
       hosts:
-       - "{{ item.dns_name }}"
+       - "{{ item.public_dns_name }}"
       preserve_existing_hosts: True
      loop: "{{ ec2_node_info.instances }}"
