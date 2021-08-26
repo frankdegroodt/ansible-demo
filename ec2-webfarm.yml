@@ -12,7 +12,7 @@
    count: []
    type: []
    controller_hostname: localhost
-   controller_oauth_token: "{{ tower_token }}"
+   controller_oauth_token: {{ lookup('env', "TOWER_TOKEN" }}
   tasks:
    - name: Add security group rule descriptions
      ec2_group:
