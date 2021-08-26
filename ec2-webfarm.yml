@@ -50,7 +50,7 @@
       overwrite: False
       update_on_launch: True
       organization: Default
-
+      controller_host: "{{ controller_hostname }}"
 
    - name: Add instance to webfarm group
      group:
