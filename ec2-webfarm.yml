@@ -44,6 +44,8 @@
   
    - name: Update AWX Inventory
      meta: refresh_inventory
+
+   - name: Wait a minute
      pause:
       minutes: 1
 
