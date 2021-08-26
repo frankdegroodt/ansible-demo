@@ -46,6 +46,7 @@
      awx.awx.inventory_source:
       name: AWS
       inventory: "AWS Inventory"
+      description: AWS EC2 for demo purposes
       credential: AWS
       overwrite: True
       update_on_launch: True
