@@ -12,7 +12,7 @@
    - name: Get EC2 Instances
      ec2_instance_info:
       region: "{{ region }}"
-      filter:
+      filters:
        instance-state-name: [ "running"]
      register: ec2_node_info
 
