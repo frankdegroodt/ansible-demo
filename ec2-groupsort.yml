@@ -12,7 +12,7 @@
    - name: Get EC2 Instances
      ec2_instance_info:
       filters:
-       availability-zone: "{{ region }}"
+       region: "{{ region }}"
      register: ec2
 
    - name: Add instance to webfarm group
