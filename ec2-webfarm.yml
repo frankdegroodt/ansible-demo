@@ -39,7 +39,7 @@
       instance_tags:
        Name: "{{ type }}"
      register: ec2
-     
+  
    - name: Add instance to webfarm group
      group:
       name: Webfarm
