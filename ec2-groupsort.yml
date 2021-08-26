@@ -10,7 +10,7 @@
    controller_validate_certs: false
   tasks:
    - name: Get EC2 Instances
-     community.aws.ec2_instance_info:
+     ec2_instance_info:
      filters:
       availability-zone: "{{ region }}"
      register: ec2
