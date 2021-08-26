@@ -33,7 +33,7 @@
 
    - name: Add instance to specific group
      group:
-      name: "{{ item.security_groups.group_name }}"
+      name: "{{ item.groups.group_name }}"
       inventory: "AWS Inventory"
       controller_host: "{{ controller_hostname }}"
       hosts:
