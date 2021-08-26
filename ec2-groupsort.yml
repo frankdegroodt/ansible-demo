@@ -9,18 +9,11 @@
    controller_hostname: 10.243.64.4
    controller_validate_certs: false
   tasks:
-   - name: Update AWX Inventory
-     awx.awx.inventory_source:
-      name: AWS
-      inventory: "AWS Inventory"
-      description: AWS EC2 for demo purposes
-      credential: AWS
-      overwrite: yes
-      update_on_launch: no
-      organization: Default
-      controller_host: "{{ controller_hostname }}"
-      source: ec2
-      state: present
+   - name: Get EC2 Instances
+     community.aws.ec2_instance_info:
+     filters:
+      availability-zone: "{{ region }}"
+     register: ec2
 
    - name: Add instance to webfarm group
      group:
