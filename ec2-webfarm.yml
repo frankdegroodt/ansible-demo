@@ -42,6 +42,9 @@
        Name: "{{ type }}"
      register: ec2
   
+   - name: Update AWX Inventory
+     meta: refresh_inventory
+
    - name: Add instance to webfarm group
      group:
       name: Webfarm
