@@ -11,7 +11,7 @@
    region: eu-west-1
    count: []
    type: []
-   controller_hostname: localhost
+   controller_hostname: 10.243.64.4
    controller_validate_certs: false
   tasks:
    - name: Add security group rule descriptions
