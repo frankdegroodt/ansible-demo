@@ -16,7 +16,7 @@
       description: AWS EC2 for demo purposes
       credential: AWS
       overwrite: yes
-      update_on_launch: yes
+      update_on_launch: no
       organization: Default
       controller_host: "{{ controller_hostname }}"
       source: ec2
