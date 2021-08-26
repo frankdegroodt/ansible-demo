@@ -43,13 +43,14 @@
      register: ec2
   
    - name: Update AWX Inventory
-     inventory_source:
-     name: AWX
-     inventory: "AWS Inventory"
-     credential: AWS
-     overwrite: False
-     update_on_launch: True
-     organization: Default
+     awx.awx.inventory_source:
+      name: AWX
+      inventory: "AWS Inventory"
+      credential: AWS
+      overwrite: False
+      update_on_launch: True
+      organization: Default
+
 
    - name: Add instance to webfarm group
      group:
