@@ -12,7 +12,7 @@
    - name: Get EC2 Instances
      ec2_instance_info:
       region: "{{ region }}"
-     register: ec2
+     register: ec2_node_info
 
    - name: Add instance to webfarm group
      group:
@@ -21,13 +21,13 @@
       state: present
       controller_host: "{{ controller_hostname }}"
       hosts:
-       - "{{ item.dns_name }}"
+       - "{{ item.public_dns_name }}"
       children:
        - Webserver
        - Database
       preserve_existing_hosts: True
       preserve_existing_children: True
-     loop: "{{ ec2.instances }}"
+     loop: "{{ ec2_node_info.instances }}"
 
    - name: Add instance to specific group
      group:
@@ -37,4 +37,4 @@
       hosts:
        - "{{ item.dns_name }}"
       preserve_existing_hosts: True
-     loop: "{{ ec2.instances }}"
+     loop: "{{ ec2_node_info.instances }}"
