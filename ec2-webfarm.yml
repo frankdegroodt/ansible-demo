@@ -47,7 +47,7 @@
       inventory: AWS Inventory
       state: present
       controller_host: "{{ controller_hostname }}"
-      controller_oauth_token: "{{ controller_oauth_token }}"
+      controller_oauthtoken: "{{ controller_oauth_token }}"
       hosts:
        - "{{ item.dns_name }}"
       children:
@@ -62,7 +62,7 @@
       name: "{{ type }}"
       inventory: AWS Inventory
       controller_host: "{{ controller_hostname }}"
-      controller_oauth_token: "{{ controller_oauth_token }}"
+      controller_oauthtoken: "{{ controller_oauth_token }}"
       hosts:
        - "{{ item.dns_name }}"
       preserve_existing_hosts: True
