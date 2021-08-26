@@ -48,8 +48,9 @@
       inventory: "AWS Inventory"
       description: AWS EC2 for demo purposes
       credential: AWS
-      overwrite: True
-      update_on_launch: True
+      overwrite: yes
+      update_on_project_update: yes
+      update_on_launch: yes
       organization: Default
       controller_host: "{{ controller_hostname }}"
       source: ec2
