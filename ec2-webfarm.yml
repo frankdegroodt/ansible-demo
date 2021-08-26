@@ -51,6 +51,8 @@
       update_on_launch: True
       organization: Default
       controller_host: "{{ controller_hostname }}"
+      source: ec2
+      overwrite: yes
 
    - name: Add instance to webfarm group
      group:
