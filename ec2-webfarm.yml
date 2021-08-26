@@ -11,7 +11,7 @@
    region: eu-west-1
    count: []
    type: []
-   controller_hostname: localhost
+   controller_hostname: https://localhost:443
   tasks:
    - name: Add security group rule descriptions
      ec2_group:
