@@ -1,21 +1,35 @@
 ---
-- name: Group instances
+- name: Create AWS instances
   hosts: localhost
-  connection: local
-  vars:
-    controller_validate_certs: false
   collections:
-    - awx.awx
-    - ansible.controller
+   - awx.awx
+   - ansible.controller
+  vars:
+   region: eu-west-1
+   controller_hostname: 10.243.64.4
+   controller_validate_certs: false
   tasks:
+   - name: Update AWX Inventory
+     awx.awx.inventory_source:
+      name: AWS
+      inventory: "AWS Inventory"
+      description: AWS EC2 for demo purposes
+      credential: AWS
+      overwrite: yes
+      update_on_launch: yes
+      organization: Default
+      controller_host: "{{ controller_hostname }}"
+      source: ec2
+      state: present
+
    - name: Add instance to webfarm group
      group:
       name: Webfarm
-      inventory: AWS Inventory
+      inventory: "AWS Inventory"
       state: present
-      controller_config_file: "/etc/controller/controller_cli.cfg"
+      controller_host: "{{ controller_hostname }}"
       hosts:
-       - "{{ instance_id }}"
+       - "{{ item.dns_name }}"
       children:
        - Webserver
        - Database
@@ -25,10 +39,10 @@
 
    - name: Add instance to specific group
      group:
-      name: "{{ type }}"
-      inventory: AWS Inventory
-      controller_config_file: "/etc/controller/controller_cli.cfg"
+      name: "{{ item.name }}"
+      inventory: "AWS Inventory"
+      controller_host: "{{ controller_hostname }}"
       hosts:
-       - "{{ instance_id }}"
+       - "{{ item.dns_name }}"
       preserve_existing_hosts: True
      loop: "{{ ec2.instances }}"
