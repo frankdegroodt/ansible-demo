@@ -44,7 +44,7 @@
   
    - name: Update AWX Inventory
      awx.awx.inventory_source:
-      name: AWX
+      name: AWS
       inventory: "AWS Inventory"
       credential: AWS
       overwrite: True
