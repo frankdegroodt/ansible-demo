@@ -11,8 +11,8 @@
   tasks:
    - name: Get EC2 Instances
      ec2_instance_info:
-     filters:
-      availability-zone: "{{ region }}"
+      filters:
+       availability-zone: "{{ region }}"
      register: ec2
 
    - name: Add instance to webfarm group
