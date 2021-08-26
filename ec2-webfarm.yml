@@ -44,6 +44,8 @@
   
    - name: Update AWX Inventory
      meta: refresh_inventory
+     pause:
+      minutes: 1
 
    - name: Add instance to webfarm group
      group:
