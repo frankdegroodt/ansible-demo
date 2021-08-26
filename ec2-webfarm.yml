@@ -57,7 +57,7 @@
    - name: Add instance to webfarm group
      group:
       name: Webfarm
-      inventory: AWS Inventory
+      inventory: "AWS Inventory"
       state: present
       controller_host: "{{ controller_hostname }}"
       hosts:
@@ -72,7 +72,7 @@
    - name: Add instance to specific group
      group:
       name: "{{ type }}"
-      inventory: AWS Inventory
+      inventory: "AWS Inventory"
       controller_host: "{{ controller_hostname }}"
       hosts:
        - "{{ item.dns_name }}"
