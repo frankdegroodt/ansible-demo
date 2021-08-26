@@ -47,12 +47,12 @@
       name: AWX
       inventory: "AWS Inventory"
       credential: AWS
-      overwrite: False
+      overwrite: True
       update_on_launch: True
       organization: Default
       controller_host: "{{ controller_hostname }}"
       source: ec2
-      overwrite: yes
+      state: present
 
    - name: Add instance to webfarm group
      group:
