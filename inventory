@@ -1,6 +1,3 @@
-[rhel]
-tower 
-
 [webserver:vars]
 webservers=5
 
