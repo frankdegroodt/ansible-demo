@@ -12,6 +12,10 @@
    controller_hostname: 10.243.64.4
    controller_validate_certs: false
   tasks:
+   - name: Display variables/facts known for a host
+     debug:
+       var: webservercount
+
    - name: Create Webserver security group 
      ec2_group:
       name: webserver
@@ -61,7 +65,7 @@
       assign_public_ip: yes
       vpc_subnet_id: subnet-0deda245
       region: "{{ region }}"
-      count: "{{ webservers }}"
+      count: "{{ webservercount }}"
       instance_tags:
        group: webserver
      register: ec2
@@ -76,7 +80,7 @@
       assign_public_ip: yes
       vpc_subnet_id: subnet-0deda245
       region: "{{ region }}"
-      count: "{{ dbservers }}"
+      count: "{{ databaseservercount }}"
       instance_tags:
        group: database
      register: ec2
@@ -91,7 +95,7 @@
       assign_public_ip: yes
       vpc_subnet_id: subnet-0deda245
       region: "{{ region }}"
-      count: "{{ loadbalancers }}"
+      count: "{{ loadbalancercount }}"
       instance_tags:
        group: loadbalancer
      register: ec2
