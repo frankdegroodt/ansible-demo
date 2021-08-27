@@ -1,5 +1,11 @@
 [rhel]
 tower 
 
-[rhel:vars]
-filecount=5
+[webserver:vars]
+webservers=5
+
+[database:vars]
+dbservers=3
+
+[loadbalancer:vars]
+loadbalancers=2
