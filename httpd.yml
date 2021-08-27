@@ -1,5 +1,5 @@
 ---
-- hosts: tag_Name_webserver
+- hosts: webserver
   become: True
   tasks:
       - name: Install the latest version of Apache
