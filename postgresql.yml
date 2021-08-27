@@ -1,0 +1,14 @@
+---
+- hosts: databaseserver
+  become: True
+  tasks:
+      - name: Install the latest version of PostgreSQL
+        yum:
+          name: postgresql-server
+          state: latest
+
+  handlers:
+       - name: Restart Postgres
+         service:
+           name: postgresql
+           state: restarted

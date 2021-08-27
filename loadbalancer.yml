@@ -1,0 +1,14 @@
+---
+- hosts: loadbalancer
+  become: True
+  tasks:
+      - name: Install the latest version of Haproxy
+        yum:
+          name: haproxy
+          state: latest
+          
+  handlers:
+       - name: Restart Haproxy
+         service:
+           name: haproxy
+           state: restarted
