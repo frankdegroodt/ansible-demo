@@ -1,5 +1,5 @@
 ---
-- name: Create AWS instances
+- name: Sort AWS instances
   hosts: localhost
   collections:
    - awx.awx
@@ -9,7 +9,7 @@
    controller_hostname: 10.243.64.4
    controller_validate_certs: false
   tasks:
-   - name: Get EC2 Instances
+   - name: Get EC2 Instances info
      ec2_instance_info:
       region: "{{ region }}"
       filters:
@@ -29,14 +29,4 @@
        - Database
       preserve_existing_hosts: True
       preserve_existing_children: True
-     loop: "{{ ec2_node_info.instances }}"
-
-   - name: Add instance to specific group
-     group:
-      name: "{{ ec2_tag_Name }}"
-      inventory: "AWS Inventory"
-      controller_host: "{{ controller_hostname }}"
-      hosts:
-       - "{{ item.public_dns_name }}"
-      preserve_existing_hosts: True
      loop: "{{ ec2_node_info.instances }}"
