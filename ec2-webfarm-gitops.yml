@@ -1,0 +1,98 @@
+---
+- name: Create AWS instances
+  hosts: localhost
+  collections:
+   - awx.awx
+   - ansible.controller
+  vars:
+   keypair: key-frank-west
+   instance_type: t2.micro
+   image: ami-5b2e5722
+   region: eu-west-1
+   controller_hostname: 10.243.64.4
+   controller_validate_certs: false
+  tasks:
+   - name: Create Webserver security group 
+     ec2_group:
+      name: webserver
+      description: Webservers SC
+      vpc_id: vpc-46e8ea20
+      region: "{{ region }}"
+      rules:
+       - proto: tcp
+         ports:
+          - 22
+          - 80
+         cidr_ip: 0.0.0.0/0
+
+   - name: Create Database security group
+     ec2_group:
+      name: database
+      description: Webservers SC
+      vpc_id: vpc-46e8ea20
+      region: "{{ region }}"
+      rules:
+       - proto: tcp
+         ports:
+          - 22
+          - 3128
+         cidr_ip: 0.0.0.0/0
+
+   - name: Create Loadbalancer security group
+     ec2_group:
+      name: loadbalancer
+      description: Webservers SC
+      vpc_id: vpc-46e8ea20
+      region: "{{ region }}"
+      rules:
+       - proto: tcp
+         ports:
+          - 22
+          - 443
+        cidr_ip: 0.0.0.0/0
+
+   - name: Launch Webserver instances
+     ec2:
+      key_name: "{{ keypair }}"
+      group: webserver
+      instance_type: "{{ instance_type }}"
+      image: "{{ image }}"
+      wait: true
+      assign_public_ip: yes
+      vpc_subnet_id: subnet-0deda245
+      region: "{{ region }}"
+      count: "{{ webservers }}"
+      instance_tags:
+       group: webserver
+     register: ec2
+
+   - name: Launch Database instances
+     ec2:
+      key_name: "{{ keypair }}"
+      group: database
+      instance_type: "{{ instance_type }}"
+      image: "{{ image }}"
+      wait: true
+      assign_public_ip: yes
+      vpc_subnet_id: subnet-0deda245
+      region: "{{ region }}"
+      count: "{{ dbservers }}"
+      instance_tags:
+       group: database
+     register: ec2
+
+   - name: Launch Loadbalancer instances
+     ec2:
+      key_name: "{{ keypair }}"
+      group: loadbalancer
+      instance_type: "{{ instance_type }}"
+      image: "{{ image }}"
+      wait: true
+      assign_public_ip: yes
+      vpc_subnet_id: subnet-0deda245
+      region: "{{ region }}"
+      count: "{{ loadbalancers }}"
+      instance_tags:
+       group: loadbalancer
+     register: ec2
+
