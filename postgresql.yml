@@ -1,5 +1,5 @@
 ---
-- hosts: databaseserver
+- hosts: database
   become: True
   tasks:
       - name: Install the latest version of PostgreSQL
