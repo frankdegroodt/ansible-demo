@@ -1,0 +1,3 @@
+webservercount=5
+databaseservercount=3
+loadbalancercount=2
