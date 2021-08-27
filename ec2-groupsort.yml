@@ -24,9 +24,5 @@
       controller_host: "{{ controller_hostname }}"
       hosts:
        - "{{ item.public_dns_name }}"
-      children:
-       - Webserver
-       - Database
       preserve_existing_hosts: True
-      preserve_existing_children: True
      loop: "{{ ec2_node_info.instances }}"
