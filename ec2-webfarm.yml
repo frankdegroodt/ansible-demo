@@ -39,5 +39,5 @@
       region: "{{ region }}"
       count: "{{ count }}"
       instance_tags:
-       Name: "{{ type }}"
+       group: "{{ type }}"
      register: ec2
