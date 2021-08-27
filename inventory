@@ -1,8 +1,14 @@
+[webserver]
+
 [webserver:vars]
 webservers=5
 
+[database]
+
 [database:vars]
 dbservers=3
+
+[loadbalancer]
 
 [loadbalancer:vars]
 loadbalancers=2
