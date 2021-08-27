@@ -33,7 +33,7 @@
 
    - name: Add instance to specific group
      group:
-      name: "{{ item.tags.Name }}"
+      name: "{{ ec2_tag_Name }}"
       inventory: "AWS Inventory"
       controller_host: "{{ controller_hostname }}"
       hosts:
