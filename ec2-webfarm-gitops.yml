@@ -12,11 +12,7 @@
    controller_hostname: 10.243.64.4
    controller_validate_certs: false
   tasks:
-   - name: Display variables/facts known for a host
-     debug:
-       var: webservercount
-
-   - name: Create Webserver security group 
+   - name: Create Webserver security group
      ec2_group:
       name: webserver
       description: Webservers SC
