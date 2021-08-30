@@ -12,11 +12,11 @@
    controller_hostname: 10.243.64.4
    controller_validate_certs: false
    webserver_invent: "{{ groups['webserver'] | length }}"
-   webservers_to_create: "{{ webservercount - webserver_invent }}"
+   webservers_to_create: "{{ webservercount | int - webserver_invent | int }}"
    databaseserver_invent: "{{ groups['database'] | length }}"
-   databaseservers_to_create: "{{ databaseservercount - databaseserver_invent }}"
+   databaseservers_to_create: "{{ databaseservercount | int - databaseserver_invent | int }}"
    loadbalancer_invent: "{{ groups['loadbalancer'] | length }}"
-   loadbalancers_to_create: "{{ loadbalancercount - loadbalancer_invent }}"
+   loadbalancers_to_create: "{{ loadbalancercount | int - loadbalancer_invent | int }}"
   tasks:
    - name: Show calculations
      debug:
