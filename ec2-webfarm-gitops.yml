@@ -108,3 +108,12 @@
        group: loadbalancer
      when: loadbalancers_to_create is gt "0"
      register: ec2
+
+   - name: Delete webserver instances
+     ec2:
+      instance_ids: "{{ item }}"
+      region: "{{ region }}"
+      state: absent
+      wait: yes
+     with_sequence: start=0 end={{ webservers_to_create }} stride=1 format={{ groups['webserver'][%02x] }}
+     when: webservers_to_create is lt "0"
