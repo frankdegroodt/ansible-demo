@@ -74,7 +74,7 @@
       count: "{{ webservers_to_create }}"
       instance_tags:
        group: webserver
-     when: webservers_to_create is lt "1"
+     when: webservers_to_create is gt "0"
      register: ec2
 
    - name: Launch Database instances
@@ -90,7 +90,7 @@
       count: "{{ databaseservercount }}"
       instance_tags:
        group: database
-     when: databaseservers_to_create is lt "1"
+     when: databaseservers_to_create is gt "0"
      register: ec2
 
    - name: Launch Loadbalancer instances
@@ -106,5 +106,5 @@
       count: "{{ loadbalancercount }}"
       instance_tags:
        group: loadbalancer
-     when: loadbalancers_to_create is lt "1"
+     when: loadbalancers_to_create is gt "0"
      register: ec2
