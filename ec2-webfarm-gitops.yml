@@ -111,9 +111,9 @@
 
    - name: Delete webserver instances
      ec2:
-      instance_ids: {{ groups['webserver']["{{ item }}"] }}
+      instance_ids: "{{ groups['webserver'][format(item)] }}"
       region: "{{ region }}"
       state: absent
       wait: yes
-     with_sequence: start=0 end={{ webservers_to_create|int -1 }} format={{ groups['webserver'][%02x] }}
+     loop: "{{ range(0,{{ webservers_to_create|int -1 }},1)|list }}"
      when: webservers_to_create is lt "0"
