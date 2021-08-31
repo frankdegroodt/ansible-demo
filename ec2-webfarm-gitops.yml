@@ -118,5 +118,5 @@
       region: "{{ region }}"
       state: absent
       wait: yes
-     loop: "{{ hostvars[groups['webservers'][:delete|int]].instance_id }}"
-     when: webservers_to_create is lt "0"
+     loop: "{{ hostvars[groups['webservers'][:webservers_to_delete|int]].instance_id }}"
+     when: webservers_to_delete is gt "0"
