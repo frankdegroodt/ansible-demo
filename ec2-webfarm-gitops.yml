@@ -20,7 +20,7 @@
   tasks:
    - name: Show calculations
      debug:
-      msg: webservers_to_create is "{{ webservers_to_create }}" databaseservers_to_create is "{{ databaseservers_to_create }}" loadbalancers_to_create is "{{ loadbalancers_to_create }}"
+      msg: webservers_to_create is {{ webservers_to_create }} databaseservers_to_create is {{ databaseservers_to_create }} loadbalancers_to_create is {{ loadbalancers_to_create }}
 
    - name: Create Webserver security group
      ec2_group:
