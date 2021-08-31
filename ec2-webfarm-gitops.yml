@@ -114,7 +114,7 @@
 
    - name: Delete webserver instances
      ec2:
-      instance_ids: "{{ item }}"
+      instance_ids: "{{ item.instance_id }}"
       region: "{{ region }}"
       state: absent
       wait: yes
