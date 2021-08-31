@@ -13,10 +13,13 @@
    controller_validate_certs: false
    webserver_invent: "{{ groups['webserver'] | length }}"
    webservers_to_create: "{{ webservercount | int - webserver_invent | int }}"
+   webservers_to_delete: "{{ webservers_to_create |int|abs }}"
    databaseserver_invent: "{{ groups['database'] | length }}"
    databaseservers_to_create: "{{ databaseservercount | int - databaseserver_invent | int }}"
+   databaseservers_to_delete: "{{ databaseservers_to_create |int|abs }}"
    loadbalancer_invent: "{{ groups['loadbalancer'] | length }}"
    loadbalancers_to_create: "{{ loadbalancercount | int - loadbalancer_invent | int }}"
+   loadbalancers_to_delete: "{{ loadbalancers_to_create |int|abs }}"
   tasks:
    - name: Show calculations
      debug:
@@ -111,9 +114,8 @@
 
    - name: Delete webserver instances
      ec2:
-      instance_ids: "{{ groups['webserver'][format(item)] }}"
+      instance_ids: "{{ item }}"
       region: "{{ region }}"
       state: absent
       wait: yes
-     loop: "{{ range(0,{{ webservers_to_create|int -1 }},1)|list }}"
-     when: webservers_to_create is lt "0"
+     loop: "{{ groups['webservers'][:webservers_to_delete|int] }}"
