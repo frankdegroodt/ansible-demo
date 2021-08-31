@@ -120,3 +120,21 @@
       wait: yes
      loop: "{{ groups['webserver'][:webservers_to_delete|int] }}"
      when: webservers_to_delete is gt "0"
+
+   - name: Delete database instances
+     ec2:
+      instance_id: "{{ item }}"
+      region: "{{ region }}"
+      state: absent
+      wait: yes
+     loop: "{{ groups['database'][:databaseservers_to_delete|int] }}"
+     when: databaseservers_to_delete is gt "0"
+
+   - name: Delete loadbalancers instances
+     ec2:
+      instance_id: "{{ item }}"
+      region: "{{ region }}"
+      state: absent
+      wait: yes
+     loop: "{{ groups['loadbalancer'][:loadbalancers_to_delete|int] }}"
+     when: loadbalancers_to_delete is gt "0"
