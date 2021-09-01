@@ -131,7 +131,7 @@
      when: databaseservers_to_delete is gt "0"
 
    - name: Delete loadbalancers instances
-     debug:
+     ansible.builtin.debug:
       var: hostvars[item]
      loop: "{{ groups['loadbalancer'][:loadbalancers_to_delete|int] }}"
      when: loadbalancers_to_delete is gt "0"
