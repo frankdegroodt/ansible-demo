@@ -114,6 +114,6 @@
 
    - name: Delete webserver instances
      debug:
-      var: hostvars[ec2-54-78-207-215.eu-west-1.compute.amazonaws.com]
+      var: hostvars[item]['.instance_id']
      loop: "{{ groups['webserver'][:webservers_to_delete|int] }}"
      when: webservers_to_delete is gt "0"
