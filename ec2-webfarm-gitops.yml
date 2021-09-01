@@ -114,6 +114,6 @@
 
    - name: Delete webserver instances
      debug:
-      msg: "{{ hostvars['item'] }}"
+      var: "{{ hostvars['item'] }}"
      loop: "{{ groups['webserver'][:webservers_to_delete|int] }}"
      when: webservers_to_delete is gt "0"
