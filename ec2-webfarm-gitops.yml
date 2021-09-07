@@ -11,12 +11,21 @@
    region: eu-west-1
    controller_hostname: 10.243.64.4
    controller_validate_certs: false
+   webserver_invent: "{{ groups['webserver'] | length }}"
+   webservers_to_create: "{{ webservercount | int - webserver_invent | int }}"
+   webservers_to_delete: "{{ webservers_to_create |int|abs }}"
+   databaseserver_invent: "{{ groups['database'] | length }}"
+   databaseservers_to_create: "{{ databaseservercount | int - databaseserver_invent | int }}"
+   databaseservers_to_delete: "{{ databaseservers_to_create |int|abs }}"
+   loadbalancer_invent: "{{ groups['loadbalancer'] | length }}"
+   loadbalancers_to_create: "{{ loadbalancercount | int - loadbalancer_invent | int }}"
+   loadbalancers_to_delete: "{{ loadbalancers_to_create |int|abs }}"
   tasks:
-   - name: Display variables/facts known for a host
+   - name: Show calculations
      debug:
-       var: webservercount
+      msg: webservers_to_create is {{ webservers_to_create }} databaseservers_to_create is {{ databaseservers_to_create }} loadbalancers_to_create is {{ loadbalancers_to_create }}
 
-   - name: Create Webserver security group 
+   - name: Create Webserver security group
      ec2_group:
       name: webserver
       description: Webservers SC
@@ -65,9 +74,10 @@
       assign_public_ip: yes
       vpc_subnet_id: subnet-0deda245
       region: "{{ region }}"
-      count: "{{ webservercount }}"
+      count: "{{ webservers_to_create }}"
       instance_tags:
        group: webserver
+     when: webservers_to_create is gt "0"
      register: ec2
 
    - name: Launch Database instances
@@ -83,6 +93,7 @@
       count: "{{ databaseservercount }}"
       instance_tags:
        group: database
+     when: databaseservers_to_create is gt "0"
      register: ec2
 
    - name: Launch Loadbalancer instances
@@ -98,4 +109,11 @@
       count: "{{ loadbalancercount }}"
       instance_tags:
        group: loadbalancer
+     when: loadbalancers_to_create is gt "0"
      register: ec2
+
+   - name: Delete webserver instances
+     debug:
+      var: hostvars[ec2-54-78-207-215.eu-west-1.compute.amazonaws.com]['.instance_id']
+     loop: "{{ groups['webserver'][:webservers_to_delete|int] }}"
+     when: webservers_to_delete is gt "0"
