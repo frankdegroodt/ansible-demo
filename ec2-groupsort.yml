@@ -10,12 +10,12 @@
   tasks:
    - name: Add instance to webfarm group
      group:
-      name: {{ item }}
+      name: "{{ item }}"
       inventory: "AWS Inventory"
       state: present
       controller_host: "{{ controller_hostname }}"
       preserve_existing_hosts: True
      loop:
-        - webserver
-        - database
-        - loadbalancer
+      - webserver
+      - database
+      - loadbalancer
