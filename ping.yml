@@ -1,0 +1,6 @@
+---
+- name: Who's there?
+  hosts: localhost
+  tasks:
+   - name: Ping em all
+     ping:

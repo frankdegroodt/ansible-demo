@@ -1,28 +1,21 @@
 ---
-- name: Sort AWS instances
+- name: Create AWS inventory groups
   hosts: localhost
   collections:
    - awx.awx
    - ansible.controller
   vars:
-   region: eu-west-1
    controller_hostname: 10.243.64.4
    controller_validate_certs: false
   tasks:
-   - name: Get EC2 Instances info
-     ec2_instance_info:
-      region: "{{ region }}"
-      filters:
-       instance-state-name: ["running"]
-     register: ec2_node_info
-
-   - name: Add instance to webfarm group
+   - name: Creating the groups
      group:
-      name: Webfarm
+      name: "{{ item }}"
       inventory: "AWS Inventory"
       state: present
       controller_host: "{{ controller_hostname }}"
-      hosts:
-       - "{{ item.public_dns_name }}"
       preserve_existing_hosts: True
-     loop: "{{ ec2_node_info.instances }}"
+     loop:
+      - webserver
+      - database
+      - loadbalancer
