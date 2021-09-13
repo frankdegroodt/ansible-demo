@@ -1,0 +1,14 @@
+---
+collections:
+
+ - name: amazon.aws
+   source: "https://galaxy.ansible.com"
+
+ - name: community.aws
+   source: "https://galaxy.ansible.com"
+
+ - name: awx.awx
+   source: "https://galaxy.ansible.com"
+
+ - name: redhat_cop.controller_configuration
+   source: "https://galaxy.ansible.com"
