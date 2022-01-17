@@ -2,5 +2,5 @@
 - name: Who's there?
   hosts: localhost
   tasks:
-   - name: Ping em all
+   - name: Ping all nodes
      ping:
